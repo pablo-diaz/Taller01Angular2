@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { ActivatedRoute, Router, Params } from '@angular/router';
+
+import { Teacher } from '../../core/teacher.model';
+import { ITeacherService } from '../shared/defs/teacher.service';
 
 @Component({
   selector: 'app-teacher-edit',
@@ -7,9 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeacherEditComponent implements OnInit {
 
-  constructor() { }
+  public teacher: Teacher = new Teacher();
+
+  constructor(@Inject('ITeacherService') private _teacherService: ITeacherService, 
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
+    let id: number;
+    this.route.params.forEach((params: Params) => id = parseInt(params['id']));
+    this.teacher = this._teacherService.getTeacher(id);
+  }
+
+  public save() {
+    this._teacherService.updateTeacher(this.teacher);
+    this.router.navigate(['/teachers']);
+  }
+
+  public cancel() {
+    this.router.navigate(['/teachers']);
   }
 
 }

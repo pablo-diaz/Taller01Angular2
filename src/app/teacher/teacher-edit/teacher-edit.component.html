@@ -1,3 +1,51 @@
-<p>
-  teacher-edit works!
-</p>
+<h2 class="=title">Edit Teacher</h2>
+
+<form #teacherForm="ngForm">
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" 
+           class="form-control" 
+           id="name" 
+           name="name" 
+           [(ngModel)]="teacher.name" 
+           required 
+           #name="ngModel" 
+           placeholder="Teacher's First Name">
+    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+      Please write a name for the Teacher
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="lastname">Lastname</label>
+    <input type="text" 
+           class="form-control" 
+           id="lastname" 
+           name="lastname" 
+           [(ngModel)]="teacher.lastName" 
+           required 
+           #lastname="ngModel" 
+           placeholder="Teacher's Last Name">
+    <div [hidden]="lastname.valid || lastname.pristine" class="alert alert-danger">
+      Please write a lastname for the Teacher
+    </div>
+  </div>
+
+  <nav>
+    <button type="button" 
+            class="btn btn-success"
+            title="Save this Teacher info" 
+            (click)="save()" 
+            [disabled]="!teacherForm.form.valid">
+      <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Save
+    </button>
+
+    <button type="button"
+            title="Don't save this info and go back to list'"
+            class="btn btn-primary" aria-label="Left Align" 
+            (click)="cancel()">
+    <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Back
+  </button>
+  </nav>
+</form>

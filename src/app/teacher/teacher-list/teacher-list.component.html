@@ -18,7 +18,7 @@
   <tbody>
     <tr *ngFor="let teacher of teachers"
         (click)="onSelect(teacher)">
-      <td>{{ teacher.name }}</td>
+      <td title="ID: {{ teacher.id }}">{{ teacher.name }}</td>
       <td>{{ teacher.lastName }}</td>
     </tr>
   </tbody>

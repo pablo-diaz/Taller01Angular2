@@ -40,7 +40,7 @@ export class TeacherService implements ITeacherService {
   }
 
   private getNextId(): number {
-    let nextId: number = 1;
+    let nextId: number = 0;
     if(this._teachers.length > 0) {
       this._teachers.forEach(c => {
         if(nextId < c.id) {
@@ -48,8 +48,8 @@ export class TeacherService implements ITeacherService {
         }
       });
     }
-
-    return  nextId;
+    nextId++;
+    return nextId;
   }
 
   public addTeacher(teacher: Teacher): void {

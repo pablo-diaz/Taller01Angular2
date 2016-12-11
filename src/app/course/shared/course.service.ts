@@ -34,7 +34,7 @@ export class CourseService implements ICourseService {
   }
 
   private getNextId(): number {
-    let nextId: number = 1;
+    let nextId: number = 0;
     if(this._courses.length > 0) {
       this._courses.forEach(c => {
         if(nextId < c.id) {
@@ -42,8 +42,8 @@ export class CourseService implements ICourseService {
         }
       });
     }
-
-    return  nextId;
+    nextId++;
+    return nextId;
   }
 
   public addCourse(course: Course): void {
