@@ -33,4 +33,22 @@ export class CourseService implements ICourseService {
     courseFound.taughtBy = course.taughtBy;
   }
 
+  private getNextId(): number {
+    let nextId: number = 1;
+    if(this._courses.length > 0) {
+      this._courses.forEach(c => {
+        if(nextId < c.id) {
+          nextId = c.id;
+        }
+      });
+    }
+
+    return  nextId;
+  }
+
+  public addCourse(course: Course): void {
+    course.id = this.getNextId();
+    this._courses.push(course);
+  }
+
 }

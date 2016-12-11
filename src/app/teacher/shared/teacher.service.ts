@@ -31,4 +31,22 @@ export class TeacherService implements ITeacherService {
     teacherFound.lastName = teacher.lastName;
   }
 
+  private getNextId(): number {
+    let nextId: number = 1;
+    if(this._teachers.length > 0) {
+      this._teachers.forEach(c => {
+        if(nextId < c.id) {
+          nextId = c.id;
+        }
+      });
+    }
+
+    return  nextId;
+  }
+
+  public addTeacher(teacher: Teacher): void {
+    teacher.id = this.getNextId();
+    this._teachers.push(teacher);
+  }
+
 }
