@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { ActivatedRoute, Router, Params } from '@angular/router';
+
+import { Teacher } from '../../core/teacher.model';
+import { ITeacherService } from '../../teacher/shared/defs/teacher.service';
+
+import { Course } from '../../core/course.model';
+import { ICourseService } from '../shared/defs/course.service';
 
 @Component({
   selector: 'app-course-edit',
@@ -7,9 +14,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseEditComponent implements OnInit {
 
-  constructor() { }
+  public course: Course = new Course();
+  public teachers: Teacher[] = [];
+
+  constructor(@Inject('ITeacherService') private _teacherService: ITeacherService, 
+              @Inject('ICourseService') private _courseService: ICourseService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.teachers = this._teacherService.listTeachers();
+
+    let id: number;
+    this.route.params.forEach((params: Params) => id = parseInt(params['id']));
+    this.course = this._courseService.getCourse(id);
+  }
+
+  public save() {
+    this._courseService.updateCourse(this.course);
+    this.router.navigate(['/courses']);
+  }
+
+  public cancel() {
+    this.router.navigate(['/courses']);
   }
 
 }
