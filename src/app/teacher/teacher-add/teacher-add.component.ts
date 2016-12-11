@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { Teacher } from '../../core/teacher.model';
+import { ITeacherService } from '../shared/defs/teacher.service';
 
 @Component({
   selector: 'app-teacher-add',
@@ -7,9 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeacherAddComponent implements OnInit {
 
-  constructor() { }
+  public teacher: Teacher = new Teacher();
+
+  constructor(@Inject('ITeacherService') private _teacherService: ITeacherService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  public save() {
+    this._teacherService.addTeacher(this.teacher);
+    this.router.navigate(['/teachers']);
+  }
+
+  public cancel() {
+    this.router.navigate(['/teachers']);
   }
 
 }
