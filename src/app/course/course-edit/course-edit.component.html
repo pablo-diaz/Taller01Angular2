@@ -34,16 +34,16 @@
 
   <div class="form-group">
     <label for="duration">Duration</label>
-    <input type="text" 
+    <input type="number" 
            class="form-control" 
            id="duration" 
            name="duration" 
            [(ngModel)]="course.duration" 
            required
            #duration="ngModel" 
-           placeholder="Hours">
+           placeholder="0">
     <div [hidden]="duration.valid || duration.pristine" class="alert alert-danger">
-      Please write a Duration for the Course
+      Please write a valid Duration hours value for the Course
     </div>
   </div>
 
