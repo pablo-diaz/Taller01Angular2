@@ -1,3 +1,81 @@
-<p>
-  course-add works!
-</p>
+<h2 class="title">Add a new Course</h2>
+
+<form #courseForm="ngForm">
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" 
+           class="form-control" 
+           id="name" 
+           name="name" 
+           [(ngModel)]="course.name" 
+           required 
+           #name="ngModel" 
+           placeholder="Course's Name">
+    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+      Please write a name for the Course
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="startingDate">Starting Date</label>
+    <input type="text" 
+           class="form-control" 
+           id="startingDate" 
+           name="startingDate" 
+           [(ngModel)]="course.startingDate" 
+           required
+           #startingDate="ngModel" 
+           placeholder="yyyy-MM-dd">
+    <div [hidden]="startingDate.valid || startingDate.pristine" class="alert alert-danger">
+      Please write a Starting Date for the Course
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="duration">Duration</label>
+    <input type="text" 
+           class="form-control" 
+           id="duration" 
+           name="duration" 
+           [(ngModel)]="course.duration" 
+           required
+           #duration="ngModel" 
+           placeholder="Hours">
+    <div [hidden]="duration.valid || duration.pristine" class="alert alert-danger">
+      Please write a Duration for the Course
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="taughtBy">Taught by</label>
+    <select class="form-control"
+            id="taughtBy"
+            name="taughtBy"
+            #taughtBy="ngModel"
+            required
+            [(ngModel)]="course.taughtBy">
+      <option *ngFor="let teacher of teachers" [ngValue]="teacher">{{ teacher.name }} {{ teacher.lastName }}</option>
+    </select>
+    <div [hidden]="taughtBy.valid || taughtBy.pristine" class="alert alert-danger">
+      Please select a Teacher for the Course
+    </div>
+  </div>
+
+  <nav>
+    <button type="button" 
+            class="btn btn-success"
+            title="Save this Course info" 
+            (click)="save()" 
+            [disabled]="!courseForm.form.valid">
+      <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Save
+    </button>
+
+    <button type="button"
+            title="Don't save this info and go back to list'"
+            class="btn btn-primary" aria-label="Left Align" 
+            (click)="cancel()">
+    <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Back
+  </button>
+  </nav>
+</form>

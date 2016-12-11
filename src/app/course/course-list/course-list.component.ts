@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { ICourseService } from '../shared/defs/course.service';
+import { Course } from '../../core/course.model';
 
 @Component({
   selector: 'app-course-list',
@@ -7,9 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseListComponent implements OnInit {
 
-  constructor() { }
+  public courses: Course[];
+
+  constructor(@Inject('ICourseService') private _courseService: ICourseService, private router: Router) { }
 
   ngOnInit() {
+    this.courses = this._courseService.listCourses();
+  }
+
+  public onSelect(course: Course) {
+    this.router.navigate(['/editcourse', course.id]);
+  }
+
+  public newCourse() {
+    this.router.navigate(['/addcourse']);
   }
 
 }

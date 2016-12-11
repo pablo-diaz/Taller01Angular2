@@ -12,9 +12,7 @@ export class TeacherService implements ITeacherService {
   }
 
   private initDB(): void {
-    this._teachers.push({ id: 1, name: "Pablo Andrés", lastName: "Diaz" });
-    this._teachers.push({ id: 2, name: "Juan David", lastName: "Herrera" });
-    this._teachers.push({ id: 3, name: "Carolina", lastName: "Hurtado" });
+    //this._teachers.push({ id: 1, name: "Default", lastName: "Teacher" });
   }
 
   public listTeachers(): Teacher[] {

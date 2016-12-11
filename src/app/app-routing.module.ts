@@ -7,6 +7,10 @@ const appRoutes: Routes = [
     loadChildren: 'app/teacher/teacher.module#TeacherModule'
   },
   {
+    path: 'courses',
+    loadChildren: 'app/course/course.module#CourseModule'
+  },
+  {
     path: '',
     redirectTo: '/teachers',
     pathMatch: 'full'

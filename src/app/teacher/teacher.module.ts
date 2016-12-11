@@ -6,8 +6,6 @@ import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { TeacherEditComponent } from './teacher-edit/teacher-edit.component';
 import { TeacherAddComponent } from './teacher-add/teacher-add.component';
 
-import { TeacherService } from './shared/teacher.service';
-
 import { TeacherRoutingModule } from './teacher-routing.module';
 
 @NgModule({
@@ -17,6 +15,6 @@ import { TeacherRoutingModule } from './teacher-routing.module';
     TeacherRoutingModule
   ],
   declarations: [TeacherListComponent, TeacherEditComponent, TeacherAddComponent],
-  providers: [{provide: 'ITeacherService', useClass: TeacherService}]
+  providers: []
 })
 export class TeacherModule { }

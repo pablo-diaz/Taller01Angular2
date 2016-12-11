@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { Teacher } from '../../core/teacher.model';
+import { ITeacherService } from '../../teacher/shared/defs/teacher.service';
+
+import { Course } from '../../core/course.model';
+import { ICourseService } from '../shared/defs/course.service';
 
 @Component({
   selector: 'app-course-add',
@@ -7,9 +14,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseAddComponent implements OnInit {
 
-  constructor() { }
+  public course: Course = new Course();
+  public teachers: Teacher[] = [];
+
+  constructor(@Inject('ITeacherService') private _teacherService: ITeacherService, 
+              @Inject('ICourseService') private _courseService: ICourseService,
+              private router: Router) { }
 
   ngOnInit() {
+    this.teachers = this._teacherService.listTeachers();
+  }
+
+  public save() {
+    this._courseService.addCourse(this.course);
+    this.router.navigate(['/courses']);
+  }
+
+  public cancel() {
+    this.router.navigate(['/courses']);
   }
 
 }
