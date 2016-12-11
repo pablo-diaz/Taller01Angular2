@@ -5,7 +5,7 @@ import { Course } from '../../core/course.model'
 @Injectable()
 export class CourseService implements ICourseService {
 
-  private _courses: Course[];
+  private _courses: Course[] = [];
 
   constructor() { }
 

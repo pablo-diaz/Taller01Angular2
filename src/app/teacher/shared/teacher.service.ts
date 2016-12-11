@@ -5,9 +5,17 @@ import { Teacher } from '../../core/teacher.model'
 @Injectable()
 export class TeacherService implements ITeacherService {
 
-  private _teachers: Teacher[];
+  private _teachers: Teacher[] = [];
 
-  constructor() { }
+  constructor() { 
+    this.initDB();
+  }
+
+  private initDB(): void {
+    this._teachers.push({ id: 1, name: "Pablo Andrés", lastName: "Diaz" });
+    this._teachers.push({ id: 2, name: "Juan David", lastName: "Herrera" });
+    this._teachers.push({ id: 3, name: "Carolina", lastName: "Hurtado" });
+  }
 
   public listTeachers(): Teacher[] {
     return this._teachers;
