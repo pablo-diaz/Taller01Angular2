@@ -44,7 +44,7 @@ export class CourseListComponent implements OnInit {
     }
 
     let sortFactor = this.sortedOrientation === SortDirection.ASC ? 1 : -1;
-    this.courses.sort((a: Course, b: Course) => a[property].localeCompare(b[property]) * sortFactor);
+    this.courses.sort((a: Course, b: Course) => a[property].toString().localeCompare(b[property].toString()) * sortFactor);
   }
 
 }

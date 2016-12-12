@@ -29,7 +29,10 @@
         (click)="onSelect(course)">
       <td title="ID: {{ course.id }}">{{ course.name }}</td>
       <td>{{ course.duration }}</td>
-      <td>{{ course.startingDate }}</td>
+      <td>
+        {{ course.startingDate }}
+        <base-state [date]="course.startingDate"></base-state>
+      </td>
     </tr>
   </tbody>
 </table>
