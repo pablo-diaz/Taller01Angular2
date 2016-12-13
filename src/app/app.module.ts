@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { TeacherModule } from './teacher/teacher.module';
 import { CourseModule } from './course/course.module';
+import { HomeModule } from './home/home.module';
 
 import { TeacherService } from './teacher/shared/teacher.service';
 import { CourseService } from './course/shared/course.service';
@@ -22,6 +23,7 @@ import { CourseService } from './course/shared/course.service';
     HttpModule,
     TeacherModule,
     CourseModule,
+    HomeModule,
     AppRoutingModule
   ],
   providers: [
