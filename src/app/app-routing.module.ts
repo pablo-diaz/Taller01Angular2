@@ -15,7 +15,7 @@ const appRoutes: Routes = [
     loadChildren: 'app/course/course.module#CourseModule'
   },
   {
-    path: '',
+    path: '**',
     redirectTo: '/home',
     pathMatch: 'full'
   }
