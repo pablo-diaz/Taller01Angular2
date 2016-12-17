@@ -23,14 +23,16 @@ export class CourseEditComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.teachers = this._teacherService.listTeachers();
     this.course.taughtBy = new Teacher();
+    this._teacherService.listTeachers().subscribe((t) => {
+      this.teachers = t;
 
-    let id: number;
-    this.route.params.forEach((params: Params) => id = parseInt(params['id']));
-    this._courseService.getCourse(id).subscribe((c) => {
-      this.course = c;
-    } );
+      let id: number;
+      this.route.params.forEach((params: Params) => id = parseInt(params['id']));
+      this._courseService.getCourse(id).subscribe((c) => {
+        this.course = c;
+      });
+    });
   }
 
   public save() {

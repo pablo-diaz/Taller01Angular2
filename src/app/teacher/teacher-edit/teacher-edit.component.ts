@@ -20,12 +20,11 @@ export class TeacherEditComponent implements OnInit {
   ngOnInit() {
     let id: number;
     this.route.params.forEach((params: Params) => id = parseInt(params['id']));
-    this.teacher = this._teacherService.getTeacher(id);
+    this._teacherService.getTeacher(id).subscribe(t => this.teacher = t);
   }
 
   public save() {
-    this._teacherService.updateTeacher(this.teacher);
-    this.router.navigate(['/teachers']);
+    this._teacherService.updateTeacher(this.teacher).subscribe(t => this.router.navigate(['/teachers']));
   }
 
   public cancel() {

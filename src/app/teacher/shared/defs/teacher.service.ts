@@ -1,8 +1,10 @@
 import { Teacher } from '../../../core/teacher.model'
 
+import { Observable } from 'rxjs/Rx';
+
 export interface ITeacherService {
-    listTeachers(): Teacher[];
-    getTeacher(id: number): Teacher;
-    updateTeacher(teacher: Teacher): void;
-    addTeacher(teacher: Teacher): void;
+    listTeachers(): Observable<Teacher[]>;
+    getTeacher(id: number): Observable<Teacher>;
+    updateTeacher(teacher: Teacher): Observable<Teacher>;
+    addTeacher(teacher: Teacher): Observable<Teacher>;
 }

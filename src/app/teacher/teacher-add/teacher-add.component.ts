@@ -19,8 +19,7 @@ export class TeacherAddComponent implements OnInit {
   }
 
   public save() {
-    this._teacherService.addTeacher(this.teacher);
-    this.router.navigate(['/teachers']);
+    this._teacherService.addTeacher(this.teacher).subscribe(t => this.router.navigate(['/teachers']));
   }
 
   public cancel() {

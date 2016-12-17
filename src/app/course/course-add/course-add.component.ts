@@ -22,7 +22,7 @@ export class CourseAddComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.teachers = this._teacherService.listTeachers();
+    this._teacherService.listTeachers().subscribe(t => this.teachers = t);
   }
 
   public save() {

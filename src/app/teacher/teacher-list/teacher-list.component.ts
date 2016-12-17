@@ -21,8 +21,10 @@ export class TeacherListComponent implements OnInit {
   constructor(@Inject('ITeacherService') private _teacherService: ITeacherService, private router: Router) { }
 
   ngOnInit() {
-    this.teachers = this._teacherService.listTeachers();
-    this.sortBy('name');
+    this._teacherService.listTeachers().subscribe((t) => {
+      this.teachers = t;
+      this.sortBy('name');
+    });
   }
 
   public onSelect(teacher: Teacher) {

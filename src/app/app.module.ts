@@ -13,7 +13,8 @@ import { HomeModule } from './home/home.module';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './shared/InMemoryDataService.mock';
 
-import { TeacherService } from './teacher/shared/teacher.service';
+//import { TeacherService } from './teacher/shared/teacher.service';
+import { TeacherHttpService } from './teacher/shared/teacher-http.service';
 
 //import { CourseService } from './course/shared/course.service';
 import { CourseHttpService } from './course/shared/course-http.service';
@@ -33,7 +34,7 @@ import { CourseHttpService } from './course/shared/course-http.service';
     InMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
   providers: [
-    { provide: 'ITeacherService', useClass: TeacherService },
+    { provide: 'ITeacherService', useClass: TeacherHttpService },
     { provide: 'ICourseService', useClass: CourseHttpService }
   ],
   bootstrap: [AppComponent]
