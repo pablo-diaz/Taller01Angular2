@@ -55,8 +55,8 @@
             name="taughtBy"
             #taughtBy="ngModel"
             required
-            [(ngModel)]="course.taughtBy">
-      <option *ngFor="let teacher of teachers" [ngValue]="teacher">{{ teacher.name }} {{ teacher.lastName }}</option>
+            [(ngModel)]="course.taughtBy.id">
+      <option *ngFor="let teacher of teachers" [value]="teacher.id">{{ teacher.name }} {{ teacher.lastName }}</option>
     </select>
     <div [hidden]="taughtBy.valid || taughtBy.pristine" class="alert alert-danger">
       Please select a Teacher for the Course
