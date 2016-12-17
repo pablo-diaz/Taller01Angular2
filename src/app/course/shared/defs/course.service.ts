@@ -1,8 +1,10 @@
+import { Observable } from 'rxjs/Rx';
+
 import { Course } from '../../../core/course.model'
 
 export interface ICourseService {
-    listCourses(): Course[];
-    getCourse(id: number): Course;
-    updateCourse(course: Course): void;
-    addCourse(course: Course): void;
+    listCourses(): Observable<Course[]>;
+    getCourse(id: number): Observable<Course>;
+    updateCourse(course: Course): Observable<Course>;
+    addCourse(course: Course): Observable<Course>;
 }

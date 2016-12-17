@@ -22,8 +22,10 @@ export class CourseListComponent implements OnInit {
   constructor(@Inject('ICourseService') private _courseService: ICourseService, private router: Router) { }
 
   ngOnInit() {
-    this.courses = this._courseService.listCourses();
-    this.sortBy('name');
+    this._courseService.listCourses().subscribe((c) => {
+      this.courses = c;
+      this.sortBy('name');
+    });
   }
 
   public onSelect(course: Course) {

@@ -26,8 +26,7 @@ export class CourseAddComponent implements OnInit {
   }
 
   public save() {
-    this._courseService.addCourse(this.course);
-    this.router.navigate(['/courses']);
+    this._courseService.addCourse(this.course).subscribe(c => this.router.navigate(['/courses']));
   }
 
   public cancel() {
